@@ -1,0 +1,28 @@
+{
+  "name": "e-learning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haianhnguyen2200/e-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haianhnguyen2200/e-learning/issues"
+  },
+  "homepage": "https://github.com/haianhnguyen2200/e-learning#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^5.1.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
