@@ -1,39 +1,69 @@
-<div class="mt-4">
-    <div class="row mb-4">
-        {{#each courses}}
-        <div class="col-sm-6 col-lg-4">
-            <div class="card">
-                <a href="/courses/{{this.slug}}">
-                    <img class="card-img-top" src="{{this.image}}" alt="">
-                </a>
-                <div class="card-body">
-                    <a href="/courses/{{this.slug}}">
-                        <h5 class="card-title">{{this.name}}</h5>
-                    </a>
-                    <p class="card-text">{{this.description}}</p>
-                    <a href="#" class="btn btn-primary">Đăng kí học</a>
-                </div>
+<section class="test">
+    <h3 class="test-heading">Trusted by 5,000+ Companies Worldwide</h3>
+    <div class="test-logos">
+        <div class="test-logo">
+            <img src="./images/ielts.png" alt="" />
+        </div>
+        <div class="test-logo">
+            <img src="./images/toeic.jpeg" alt="" />
+        </div>
+        <div class="test-logo">
+            <img src="./images/toefl.jpeg" alt="" />
+        </div>
+        <div class="test-logo">
+            <img src="./images/aptis.png" alt="" />
+        </div>
+    </div>
+</section>
+<section class="introduce">
+    <h1 class="introduce-heading">VỀ CHÚNG TÔI</h1>
+    <p class="introduce-text">Với mong muốn mang tới cho học viên các khoá học ôn luyện chất lượng cao, chuẩn xác nhất, Skiiline luôn cập nhật và đổi mới.</p>
+    
+    <div class="row">
+        <div class="introduce-col">
+            <img src="./images/london.png" alt="">
+            <h3 class="introduce-type">World Class Library</h3>
+            <p class="introduce-detail">All of its international programs are of highly appreciated and have attracted the involvement of many distinguished students.</p>
+        </div>
+        <div class="introduce-col">
+            <img src="./images/london.png" alt="">
+            <h3 class="introduce-type">Largest Play Ground</h3>
+            <p class="introduce-detail">A number and scale of research studies jointly conducted by NEU and international academic organizations have been increased substantially.</p>
+        </div>
+        <div class="introduce-col">
+            <img src="./images/londo.png" alt="">
+            <h3 class="introduce-type">Tasty And Healthy Food</h3>
+            <p class="introduce-detail">International cooperation programs have made significant contributions to the university’s achievements.</p>
+        </div>
+    </div>
+</section>
+<section class="course-group">
+    <h1 class="course-group-heading">OUR MODERN CAMPUS</h1>
+    <p class="course-group-text">We offer various subject in our cirriculum and you can choose anyone which you want to know more and good at that skill.</p>
+    <div class="row">
+        <div class="course-group-col">
+            <img src="./images/london.png" alt="">
+            <div class="layer">
+                <h3 class="course-group-type">IELTS</h3>
             </div>
         </div>
-        {{/each}}
+        <div class="course-group-col">
+            <img src="./images/london.png" alt="">
+            <div class="layer">
+                <h3 class="course-group-type">TOEIC</h3>
+            </div>
+        </div>
+        <div class="course-group-col">
+            <img src="./images/london.png" alt="">
+            <div class="layer">
+                <h3 class="course-group-type">TOEFL</h3>
+            </div>
+        </div>
+        <div class="course-group-col">
+            <img src="./images/london.png" alt="">
+            <div class="layer">
+                <h3 class="course-group-type">APTIS</h3>
+            </div>
+        </div>
     </div>
-    <nav aria-label="Page navigation" class="d-flex justify-content-center">
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+</section>

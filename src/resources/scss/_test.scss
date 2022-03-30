@@ -1,0 +1,20 @@
+.test {
+  &-heading {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  &-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 75px;
+    max-width: 1370px;
+    padding: 0 15px;
+  }
+  &-logo img {
+    height: 84px;
+  }
+}
