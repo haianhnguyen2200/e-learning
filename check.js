@@ -31,7 +31,7 @@
               </li>
             </ul>
             <div class="header-buttons">
-              <a href="#!" class="btn btn--white">Login</a>
+              <a href="#!" class="btn btn--white">auth</a>
               <a href="#!" class="btn btn--primary">Sign Up</a>
             </div>
           </div>

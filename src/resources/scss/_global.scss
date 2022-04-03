@@ -36,7 +36,6 @@ body {
     font-weight: bold;
     font-size: 26px;
     line-height: 180%;
-    margin-bottom: 20px;
     span {
       color: $secondary-color;
     }
@@ -189,6 +188,7 @@ body {
 }
 
 .introduce-col img {
-  width: 100%;
+  width: 320px;
+  height: 320px;
   border-radius: 10px;
 }

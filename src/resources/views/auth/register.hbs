@@ -1,0 +1,225 @@
+<div class="form-container">
+    <div class="form-img">
+        <img srcset="/images/auth.png"/>       
+    </div>
+    <form action="" method="POST" class="form" id="form-1">
+        <div class="auth__header">
+            <h3 class="auth__heading">Đăng ký</h3>
+            <a href="/auth/login">
+                <span class="auth__switch-btn js-switch-login">Đăng nhập</span>
+            </a>
+        </div>
+        <div class="auth__form">
+                <div class="auth__form-group">
+                    <input type="email" class="auth__form-input" placeholder="Nhập email của bạn">
+                </div>
+                <div class="auth__form-group">
+                    <input type="password" class="auth__form-input" placeholder="Nhập mật khẩu">
+                </div>
+                <div class="auth__form-group">
+                    <input type="password" class="auth__form-input" placeholder="Xác minh mật khẩu">
+                </div>
+            </div>
+        <div class="auth__help">
+                    <a href="" class="auth__help-link auth__help--forgot">Quên mật khẩu</a>
+                    <a href="" class="auth__help-link">Cần trợ giúp?</a>
+                </div>
+                <div class="auth__control">
+                    <a href="/">TRỞ LẠI
+                    <button class="btn btn-back btn-back-register">VỀ TRANG CHỦ</button>
+                    </a>
+                <button class="btn btn-primary">ĐĂNG KÝ</button>
+                </div>
+                <div class="auth__connect">
+                <button class="btn btn--icon btn--icon-facebook">
+                    <i class="ti-icon ti-facebook"></i>
+                    <span class="btn-title">Kết nối với Facebook</span>
+                </button>
+                <button class="btn btn--icon btn--icon-google">
+                    <i class="ti-icon ti-google"></i>
+                    <span class="btn-title">Kết nối với Google</span>
+                </button>
+            </div>
+    </form>
+</div>
+
+<script>
+    function Validator(options) {
+    function getParent(element, selector) {
+        while (element.parentElement) {
+            if (element.parentElement.matches(selector)) {
+                return element.parentElement;
+            }
+            element = element.parentElement;
+        }
+    }
+    var selectorRules = {};
+
+    //Ham thuc hien validate
+    function validate(inputElement, rule) {
+        var errorMessage;
+        var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
+
+        //Lay ra cac rules cua selector
+        var rules = selectorRules[rule.selector];
+
+        //Lap qua tung rule va kiem tra
+        //Neu co loi thi dung viec kiem tra
+        for (var i = 0; i < rules.length; i++) {
+            switch (inputElement) {
+                case 'radio':
+                case 'checkbox':
+                    errorMessage = rules[i](
+                        formElement.querySelector(rule.selector + ':checked')
+                    );
+                    break;
+                default:
+                    errorMessage = rules[i](inputElement.value);
+            }
+            if (errorMessage) break;
+        }
+
+        if (errorMessage) {
+            errorElement.innerText = errorMessage;
+            getParent(inputElement, options.formGroupSelector).classList.add('invalid');
+        } else {
+            errorElement.innerText = '';
+            getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
+        }
+        return !errorMessage;
+    }
+
+    //Lay element cua form 
+    var formElement = document.querySelector(options.form);
+
+    if (formElement) {
+
+        //Khi click nut submit form
+        formElement.onsubmit = function (e) {
+            e.preventDefault();
+
+            var isFormValid = true;
+
+            //Lap qua tung rule va validate
+            options.rules.forEach(function (rule) {
+                var inputElement = formElement.querySelector(rule.selector);
+                var isValid = validate(inputElement, rule);
+                if (!isValid) {
+                    var isFormValid = false;
+                }
+            })
+            if (isFormValid) {
+
+                //Truong hop submit voi JS
+                if (typeof options.onSubmit === 'function') {
+                    var enableInputs = formElement.querySelectorAll('[name]');
+                    var formValues = Array.from(enableInputs).reduce(function (values, input) {
+
+                        switch (input.type) {
+                            case 'radio':
+                            case 'checkbox':
+                                values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
+                                break;
+                            default:
+                                values[input.name] = input.value;
+                        }
+                        return values;
+                    }, {})
+                    options.onSubmit(formValues);
+                    console.log(formValues)
+                }
+                //Submit voi hanh vi mac dinh
+                else {
+                    formElement.submit();
+                }
+            }
+        }
+
+        //Lap qua moi rule va xu ly
+        options.rules.forEach(function (rule) {
+            //Luu lai cac rule cho moi input
+            if (Array.isArray(selectorRules[rule.selector])) {
+                selectorRules[rule.selector].push(rule.test);
+            } else {
+                selectorRules[rule.selector] = [rule.test];
+            }
+            var inputElements = formElement.querySelectorAll(rule.selector);
+
+            Array.from(inputElements).forEach(function (inputElement) {
+                //Xu ly truong hop blur khoi input
+                inputElement.onblur = function () {
+                    validate(inputElement, rule);
+                }
+
+                //Xu ly moi khi nguoi dung nhap vao input
+                inputElement.oninput = function () {
+                    var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector);
+                    errorElement.innerText = '';
+                    getParent(inputElement, options.formGroupSelector).classList.remove('invalid');
+                }
+            })
+        })
+    }
+}
+
+//Dinh nghia rules
+//Nguyen tac cua rules
+//Khi co loi, tra ve message loi
+//Khi khong co loi, tra ve undefined
+
+Validator.isRequire = function (selector, message) {
+    return {
+        selector,
+        test: function (value) {
+            return value ? undefined : message || 'Vui lòng nhập trường này';
+        }
+    }
+}
+
+Validator.isEmail = function (selector, message) {
+    return {
+        selector,
+        test: function (value) {
+            var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            return regex.test(value) ? undefined : message || 'Trường này phải là email';
+        }
+    }
+}
+
+Validator.minLength = function (selector, min, message) {
+    return {
+        selector,
+        test: function (value) {
+            return value.length >= min ? undefined : message || `Vui lòng nhập tối thiểu ${min} kí tự`;
+        }
+    }
+}
+
+Validator.isConfirmed = function (selector, getConfirmValue, message) {
+    return {
+        selector,
+        test: function (value) {
+            return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
+        }
+    }
+}
+    Validator({
+        form: '#form-1',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequire('#fullname', 'Vui lòng nhập tên đầy đủ'),
+            Validator.isRequire('#email'),
+            Validator.isRequire('input[name="gender"]'),
+            Validator.isEmail('#email'),
+            Validator.minLength('#password', 6),
+            Validator.isRequire('#password_confirmation'),
+            Validator.isConfirmed('#password_confirmation', function () {
+                return document.querySelector('#form-1 #password').value;
+            }, 'Mật khẩu nhập lại không chính xác')
+        ],
+        onSubmit: function (data) {
+            //Call API
+        }
+    });
+</script>
