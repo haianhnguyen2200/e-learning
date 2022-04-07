@@ -1,7 +1,9 @@
 .form-container {
-  background: $yellow;
+  background-color: $yellow;
+}
+
+.form-container {
   display: flex;
-  padding: 48px;
   justify-content: space-between;
 }
 
@@ -192,4 +194,3 @@
 .form-submit:hover {
   background-color: #1ac7b6;
 }
-
