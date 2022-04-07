@@ -3,7 +3,7 @@
   overflow: hidden;
   margin-left: auto;
   margin-right: auto;
-  padding: 24px 36px;
+  padding: 24px 36px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,17 +15,19 @@
   gap: 0 34px;
 }
 .header-main {
-  max-width: 1025px;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: #fff2e1;
+  padding: 0 180px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0 37px;
+  gap: 0 56px;
   clip-path: ellipse(100% 100% at top);
 }
+.header-content {
+  max-width: 921px;
+}
 .header-heading {
-  font-size: 34px;
+  font-size: 36px;
   font-weight: bold;
   margin-bottom: 34px;
   line-height: 1.5;
@@ -35,7 +37,7 @@
   color: #2f327d;
 }
 .header-desc {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 160%;
   margin-bottom: 52px;
   color: #464646;
@@ -119,11 +121,11 @@
 }
 
 body {
-  font-size: 14px;
+  font-size: 16px;
   color: #252641;
   font-weight: 400;
   line-height: 1;
-  font-family: "Poppins", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 html {
@@ -131,11 +133,15 @@ html {
   height: 100%;
 }
 
+.hide {
+  display: none;
+}
+
 .btn {
   display: inline-block;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   line-height: 1.5;
   padding: 13px 50px;
   border: 0;
@@ -167,7 +173,7 @@ html {
   color: #f48c06;
 }
 .global-text {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 180%;
   color: #696984;
 }
@@ -206,7 +212,6 @@ html {
 
 .introduce,
 .course-group {
-  width: 80%;
   margin: auto;
   text-align: center;
   padding-top: 80px;
@@ -218,11 +223,18 @@ html {
   font-weight: 600;
 }
 
-.introduce-detail,
+.introduce-detail {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  padding: 10px;
+  color: #524f4f;
+}
+
 .introduce-text,
 .course-group-text {
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 22px;
   color: #524f4f;
   padding: 10px;
@@ -232,14 +244,20 @@ html {
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .introduce-type {
   text-align: center;
-  font-weight: 600;
-  margin: 10px 0;
+  font-weight: 700;
+  margin: 20px 0;
   line-height: 30px;
   margin-bottom: 0;
+  font-size: 20px;
+}
+.introduce-type span {
+  color: #f48c06;
 }
 
 .introduce-col:hover img,
@@ -361,9 +379,14 @@ img {
   max-width: 100%;
 }
 
+.test {
+  margin-top: 80px;
+  border-radius: 6px;
+  background-color: #f1f2f3;
+}
 .test-heading {
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 400;
+  font-size: 16px;
   line-height: 160%;
   text-align: center;
   margin-bottom: 32px;
@@ -604,7 +627,7 @@ img {
   margin-bottom: 30px;
 }
 .youcan-more {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 180%;
   text-decoration: underline;
   color: #696984;
