@@ -1,15 +1,48 @@
 <div class="mt-4">
-    <div class="row">
-        <div class="col-lg-3">
-            <button>HỌC NGAY</button>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="course-detail">
+        <div class="detai-video-demo">
+          <iframe
+            width="100%"
+            src="https://www.youtube.com/embed/{{course.videoID}}"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
-        <div class="col-lg-9">
-            <h2 class="pt-2 pb-2">{{course.name}}</h2>
-            <iframe width="797" height="448" src="https://www.youtube.com/embed/{{course.videoID}}"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-            <p class="pt-2">{{course.description}}</p>
+        <div class="detail-info">
+          <div class="detail-price">MIEN PHI</div>
+          <button class="btn">HỌC NGAY</button>
+          <ul class="detail-item">
+            <li class="detail-item-text"><i
+                class="fa-solid fa-suitcase"
+              ></i>Trình độ cơ bản</li>
+            <li class="detail-item-text">Tổng số 51 bài học</li>
+            <li class="detail-item-text">Thời lượng 13 giờ 20 phút</li>
+            <li class="detail-item-text">Học mọi lúc, mọi nơi</li>
+          </ul>
         </div>
+      </div>
     </div>
+    <div class="col-lg-9 course-main">
+      <h2 class="pt-2 pb-2 course-heading">{{course.name}}</h2>
+
+      <p class="pt-2">{{course.description}}</p>
+      <div class="course-agenda">
+        <div class="agenda-heading">LO TRINH BAI GIANG</div>
+        <p class="agenda-desc">51 bai hoc</p>
+        <ul class="agenda-list">
+          <li class="agenda-item">1. Gioi thieu ve khoa hoc</li>
+          <li class="agenda-item">1. Gioi thieu ve khoa hoc</li>
+          <li class="agenda-item">1. Gioi thieu ve khoa hoc</li>
+          <li class="agenda-item">1. Gioi thieu ve khoa hoc</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
+<script>
+  import CourseDetail from "../components/courseDetail" <CourseDetail />
+</script>
