@@ -138,29 +138,23 @@
 </form>
 
 <script>
-
-  document.addEventListener('DOMContentLoaded', function () { var courseId;
-  //var containerForm = document.forms['container-form']; var containerForm =
-  $('form[name="container-form"]'); var deleteForm =
+  document.addEventListener('DOMContentLoaded', function () { var courseId; var
+  containerForm = $('form[name="container-form"]'); var deleteForm =
   document.forms['delete-course-form']; var btnDeleteCourse =
   document.getElementById('btn-delete-course'); var checkboxAll =
   $('#checkbox-all'); var courseItemCheckbox = $('input[name="courseIds[]"]');
   var checkSubmitBtn = $('.btn-check-submit');
   $('#delete-course-modal').on('show.bs.modal', function (event) { var button =
-  $(event.relatedTarget); courseId = button.data('id'); }); //When delete course
-  btn clicked btnDeleteCourse.onclick = function () { deleteForm.action =
-  '/courses/' + courseId + '?_method=DELETE'; deleteForm.submit(); } //Checkbox
-  all changed checkboxAll.change(function () { var isCheckedAll =
-  $(this).prop('checked'); courseItemCheckbox.prop('checked', isCheckedAll);
-  renderCheckSubmitBtn(); }) //Course item checkbox changed
+  $(event.relatedTarget); courseId = button.data('id'); });
+  btnDeleteCourse.onclick = function () { deleteForm.action = '/courses/' +
+  courseId + '?_method=DELETE'; deleteForm.submit(); };
+  checkboxAll.change(function () { var isCheckedAll = $(this).prop('checked');
+  courseItemCheckbox.prop('checked', isCheckedAll); renderCheckSubmitBtn(); });
   courseItemCheckbox.change(function () { var isCheckedAll =
   courseItemCheckbox.length === $('input[name="courseIds[]"]:checked').length;
-  checkboxAll.prop('checked', isCheckedAll); renderCheckSubmitBtn(); })
-  //Re-render checkbox submit btn function renderCheckSubmitBtn() { var
-  checkedCount = $('input[name="courseIds[]"]:checked').length; if (checkedCount
-  > 0) { checkSubmitBtn.attr('disabled', false); } else {
-  checkSubmitBtn.attr('disabled', true); } } //When checkbox submit btn clicked
-  //containerForm.click('submit', function (e) { // var isCanSubmit =
-  !checkSubmitBtn.hasClass('disabled'); // if (!isCanSubmit) { //
-  e.preventDefault(); // } //}) })
+  checkboxAll.prop('checked', isCheckedAll); renderCheckSubmitBtn(); });
+  function renderCheckSubmitBtn() { var checkedCount =
+  $('input[name="courseIds[]"]:checked').length; if (checkedCount > 0) {
+  checkSubmitBtn.attr('disabled', false); } else {
+  checkSubmitBtn.attr('disabled', true); } }; })
 </script>
