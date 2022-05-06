@@ -5,13 +5,13 @@
   action="/courses/handle-form-actions"
 >
   <div>
-    <h3 class="mb-2">KHOÁ HỌC CỦA TÔI</h3>
+    <h3 class="mb-4">DANH SÁCH KHOÁ HỌC</h3>
     <div class="heading-wrap">
       <a href="/courses/create">
-        <span class="oi oi-plus mr-2"></span>
+        <span class="oi oi-plus mr-4"></span>
         Tạo mới khoá học</a>
       <a href="/me/trash/courses">
-        <span class="oi oi-trash mr-2"></span>
+        <span class="oi oi-trash mr-4"></span>
         Đã xoá gần đây ({{deletedCount}})</a>
     </div>
 
@@ -50,8 +50,8 @@
           {{{sortable "name" _sort}}}
         </th>
         <th scope="col">
-          Video ID
-          {{{sortable "videoId" _sort}}}
+          Giá khoá học
+          {{{sortable "price" _sort}}}
         </th>
         <th scope="col" colspan="2">
           Mô tả
@@ -60,7 +60,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each courses}}
+      {{#each products}}
         <tr>
           <td>
             <div class="form-check">
@@ -74,12 +74,12 @@
           </td>
           <td scope="row">{{sum @index 1}}</td>
           <td>{{this.name}}</td>
-          <td>{{this.videoID}}</td>
+          <td>{{this.price}} VND</td>
           <td class="td-width">{{this.description}}</td>
           <td>
             <a
               href="/courses/{{this.slug}}/edit"
-              class="btn btn-primary"
+              class="btn btn-primary mb-2"
             >Sửa</a>
             <a
               href=""

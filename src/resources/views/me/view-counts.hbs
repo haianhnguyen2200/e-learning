@@ -1,0 +1,53 @@
+<form
+  class="mt-4"
+  name="container-form"
+  method="POST"
+  action="/courses/handle-form-actions"
+>
+  <div>
+    <h3 class="mb-4">THỐNG KÊ LƯỢT XEM KHOÁ HỌC</h3>
+
+  </div>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">
+          Tên khoá học
+          {{{sortable "name" _sort}}}
+        </th>
+        <th scope="col">
+          Lượt xem
+          {{{sortable "viewCounts" _sort}}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="courseIds[]"
+                value="{{this._id}}"
+              />
+            </div>
+          </td>
+          <td scope="row">{{sum @index 1}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.viewCounts}} lượt xem</td>
+
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="5" class="text-center">
+            Không tìm thấy thông tin.
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
