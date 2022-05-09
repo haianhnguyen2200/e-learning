@@ -1,0 +1,77 @@
+<form
+  class="mt-4"
+  name="container-form"
+  method="POST"
+  action="/courses/handle-form-actions"
+>
+  <div>
+    <h3 class="mb-4">DANH SÁCH NGƯỜI DÙNG</h3>
+  </div>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">
+          Tài khoản
+          {{{sortable "name" _sort}}}
+        </th>
+        <th scope="col">
+          Tên
+          {{{sortable "firstName" _sort}}}
+        </th>
+        <th scope="col">
+          Họ
+          {{{sortable "lastName" _sort}}}
+        </th>
+        <th scope="col">
+          Địa chỉ
+          {{{sortable "lastName" _sort}}}
+        </th>
+        <th scope="col">
+          SĐT
+          {{{sortable "lastName" _sort}}}
+        </th>
+        <th scope="col">
+          Email
+          {{{sortable "email" _sort}}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each users}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="courseIds[]"
+                value="{{this._id}}"
+              />
+            </div>
+          </td>
+          <td scope="row">{{sum @index 1}}</td>
+          <td>{{this.username}}</td>
+          <td>{{this.firstName}}</td>
+          <td>{{this.lastName}}</td>
+          <td>{{this.address}}</td>
+          <td>{{this.phoneNumber}}</td>
+          <td>{{this.email}}</td>
+          <td>
+            <a
+              href="/courses/{{this._id}}/editUser"
+              class="btn btn-primary mb-2"
+            >Sửa</a>
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan="5" class="text-center">
+            Không tìm thấy thông tin.
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>

@@ -1,136 +1,142 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const mongooseDelete = require("mongoose-delete");
 const slug = require("mongoose-slug-generator");
+const mongooseDelete = require("mongoose-delete");
 
+const Schema = mongoose.Schema;
 // const removeAccent = require("../util/removeAccent");
 
-const productSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: false,
-    default: "Một sản phẩm từ Bros",
-  },
-  stock: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  size: {
-    type: [String],
-    required: true,
-  },
-  productType: {
-    main: String,
-    sub: String,
-  },
-  color: {
-    type: [String],
-    required: true,
-  },
-  pattern: {
-    type: [String],
-    required: false,
-  },
-  tags: {
-    type: [String],
-    required: false,
-  },
-  images: {
-    type: [String],
-    required: true,
-  },
-  dateAdded: {
-    type: Date,
-    required: false,
-    default: Date.now,
-  },
-  isSale: {
-    status: {
-      type: Boolean,
-      default: false,
-    },
-    percent: {
-      type: Number,
-      default: 0,
-    },
-    end: {
-      type: Date,
-    },
-  },
-  ofSellers: {
-    userId: {
-      type: Schema.Types.ObjectId,
+const productSchema = new Schema(
+  {
+    name: {
+      type: String,
       required: true,
-      ref: "User",
     },
-    name: String,
-  },
-  labels: {
-    type: String,
-    required: false,
-    default: "Shiro",
-  },
-  materials: {
-    type: [String],
-    required: true,
-  },
-  buyCounts: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  viewCounts: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  rating: {
-    byUser: String,
-    content: String,
-    star: Number,
-  },
-  index: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  comment: {
-    total: {
+    description: {
+      type: String,
+    },
+    stock: {
       type: Number,
-      require: false,
+      required: false,
+      default: 10,
+    },
+    price: {
+      type: String,
       default: 0,
     },
-    items: [
-      {
-        title: {
-          type: String,
-        },
-        content: {
-          type: String,
-        },
-        name: {
-          type: String,
-        },
-        date: {
-          type: Date,
-          default: Date.now,
-        },
-        star: {
-          type: Number,
-        },
+    size: {
+      type: [String],
+      required: false,
+      default: ["M", "L"],
+    },
+    productType: {
+      main: String,
+      sub: String,
+    },
+    color: {
+      type: [String],
+      required: false,
+      default: ["xanh", "do"],
+    },
+    pattern: {
+      type: [String],
+      required: false,
+      default: ["giay", "go"],
+    },
+    tags: {
+      type: [String],
+      required: false,
+      default: ["ielts"],
+    },
+    images: {
+      type: [String],
+    },
+    dateAdded: {
+      type: Date,
+      required: false,
+      default: Date.now,
+    },
+    isSale: {
+      status: {
+        type: Boolean,
+        default: false,
       },
-    ],
+      percent: {
+        type: Number,
+        default: 0,
+      },
+      end: {
+        type: Date,
+      },
+    },
+    ofSellers: {
+      userId: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: "User",
+      },
+      name: String,
+    },
+    labels: {
+      type: String,
+      required: false,
+      default: "Shiro",
+    },
+    materials: {
+      type: [String],
+      required: false,
+      default: ["ha"],
+    },
+    buyCounts: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
+    viewCounts: {
+      type: Number,
+      default: 0,
+    },
+    rating: {
+      byUser: String,
+      content: String,
+      star: Number,
+    },
+    index: {
+      type: Number,
+      default: 0,
+    },
+    comment: {
+      total: {
+        type: Number,
+        require: false,
+        default: 0,
+      },
+      items: [
+        {
+          title: {
+            type: String,
+          },
+          content: {
+            type: String,
+          },
+          name: {
+            type: String,
+          },
+          date: {
+            type: Date,
+            default: Date.now,
+          },
+          star: {
+            type: Number,
+          },
+        },
+      ],
+    },
+    slug: { type: String, slug: "name", unique: true },
   },
-  slug: { type: String, slug: "name", unique: true },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const index = {
   name: "text",
@@ -142,7 +148,7 @@ const index = {
 };
 productSchema.index(index);
 
-// productSchema.methods.getNonAccentType = function() {
+// productSchema.methods.getNonAccentType = function () {
 //   return removeAccent(this.productType.main);
 // };
 

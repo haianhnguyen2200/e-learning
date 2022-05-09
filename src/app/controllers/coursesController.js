@@ -1,6 +1,8 @@
+const Products = require("../models/product");
 const Course = require("../models/Course");
 const { mongooseToObject } = require("../../util/mongoose");
-const { multipleMongooseToObject } = require('../../util/mongoose');
+const { multipleMongooseToObject } = require("../../util/mongoose");
+const Users = require("../models/user");
 
 class coursesController {
   // [GET] /courses/:slug
@@ -18,9 +20,9 @@ class coursesController {
   list(req, res, next) {
     Course.find({})
       .then((courses) => {
-          res.render('courses/list', {
-              courses: multipleMongooseToObject(courses),
-          });
+        res.render("courses/list", {
+          courses: multipleMongooseToObject(courses),
+        });
       })
       .catch(next);
   }
@@ -31,11 +33,20 @@ class coursesController {
   }
 
   // [POST] /courses/store
+  // store(req, res, next) {
+  //   const formData = req.body;
+  //   formData.image = `https://img.youtube.com/vi/${formData.videoID}/sddefault.jpg`;
+  //   const course = new Course(formData);
+  //   course
+  //     .save()
+  //     .then(() => res.redirect("/me/stored/courses"))
+  //     .catch((error) => {});
+  // }
+
   store(req, res, next) {
     const formData = req.body;
-    formData.image = `https://img.youtube.com/vi/${formData.videoID}/sddefault.jpg`;
-    const course = new Course(formData);
-    course
+    const product = new Products(formData);
+    product
       .save()
       .then(() => res.redirect("/me/stored/courses"))
       .catch((error) => {});
@@ -43,10 +54,10 @@ class coursesController {
 
   // [GET] /courses/:slug/edit
   edit(req, res, next) {
-    Course.findOne({ slug: req.params.slug })
-      .then((course) => {
+    Products.findOne({ slug: req.params.slug })
+      .then((product) => {
         res.render("courses/edit", {
-          course: mongooseToObject(course),
+          product: mongooseToObject(product),
         });
       })
       .catch(next);
@@ -54,28 +65,46 @@ class coursesController {
 
   // [PUT] /courses/:slug
   update(req, res, next) {
-    Course.updateOne({ slug: req.params.slug }, req.body)
+    Products.updateOne({ slug: req.params.slug }, req.body)
       .then(() => res.redirect("/me/stored/courses"))
+      .catch(next);
+  }
+
+  // [GET] /courses/:slug/edit
+  editUser(req, res, next) {
+    Users.findOne({ _id: req.params.id })
+      .then((user) => {
+        res.render("courses/editUser", {
+          user: mongooseToObject(user),
+        });
+      })
+      .catch(next);
+  }
+
+  // [PUT] /courses/:slug
+  updateUser(req, res, next) {
+    Users.updateOne({ _id: req.params.id }, req.body)
+      .then(() => res.redirect("/me/users"))
       .catch(next);
   }
 
   // [DELETE] /courses/:slug
   delete(req, res, next) {
-    Course.delete({ _id: req.params.id })
+    Products.delete({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
   }
 
   // [PATCH] /courses/:id/restore
   restore(req, res, next) {
-    Course.restore({ _id: req.params.id })
+    Products.restore({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
   }
 
   // [FORCE_DELETE] /courses/:id/force
   forceDelete(req, res, next) {
-    Course.deleteOne({ _id: req.params.id })
+    Products.deleteOne({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
   }
@@ -84,17 +113,17 @@ class coursesController {
   handleFormActions(req, res, next) {
     switch (req.body.action) {
       case "delete":
-        Course.delete({ _id: { $in: req.body.courseIds } })
+        Products.delete({ _id: { $in: req.body.courseIds } })
           .then(() => res.redirect("back"))
           .catch(next);
         break;
       case "restore":
-        Course.restore({ _id: { $in: req.body.courseIds } })
+        Products.restore({ _id: { $in: req.body.courseIds } })
           .then(() => res.redirect("back"))
           .catch(next);
         break;
       case "force-delete":
-        Course.deleteOne({ _id: { $in: req.body.courseIds } })
+        Products.deleteOne({ _id: { $in: req.body.courseIds } })
           .then(() => res.redirect("back"))
           .catch(next);
         break;

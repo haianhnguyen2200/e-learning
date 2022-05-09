@@ -13,6 +13,9 @@ router.post("/handle-form-actions", coursesController.handleFormActions);
 router.get("/:slug/edit", coursesController.edit);
 router.put("/:slug", coursesController.update);
 
+router.get("/:id/editUser", coursesController.editUser);
+router.put("/users/:id", coursesController.updateUser);
+
 router.patch("/:id/restore", coursesController.restore);
 
 router.delete("/:id", coursesController.delete);

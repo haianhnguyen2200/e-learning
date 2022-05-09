@@ -1,4 +1,6 @@
 const Course = require("../models/Course");
+const Users = require("../models/user");
+const Order = require("../models/order");
 const Products = require("../models/product");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 
@@ -25,35 +27,16 @@ class meController {
 
   // [GET] /me/trash/courses
   trashCourses(req, res, next) {
-    Course.findDeleted({})
-      .then((courses) =>
+    Products.findDeleted({})
+      .then((products) =>
         res.render("me/trash-courses", {
-          courses: multipleMongooseToObject(courses),
+          products: multipleMongooseToObject(products),
         })
       )
       .catch(next);
   }
 
   viewCounts(req, res, next) {
-    let courseQuery = Course.find({});
-
-    if (req.query.hasOwnProperty("_sort")) {
-      courseQuery = courseQuery.sort({
-        [req.query.column]: req.query.type,
-      });
-    }
-
-    Promise.all([courseQuery, Course.countDocumentsDeleted()])
-      .then(([courses, deletedCount]) =>
-        res.render("me/view-counts", {
-          deletedCount,
-          courses: multipleMongooseToObject(courses),
-        })
-      )
-      .catch(next);
-  }
-
-  test(req, res, next) {
     let courseQuery = Products.find({});
 
     if (req.query.hasOwnProperty("_sort")) {
@@ -67,6 +50,44 @@ class meController {
         res.render("me/view-counts", {
           deletedCount,
           products: multipleMongooseToObject(products),
+        })
+      )
+      .catch(next);
+  }
+
+  getUsers(req, res, next) {
+    let courseQuery = Users.find({});
+
+    if (req.query.hasOwnProperty("_sort")) {
+      courseQuery = courseQuery.sort({
+        [req.query.column]: req.query.type,
+      });
+    }
+
+    Promise.all([courseQuery])
+      .then(([users, deletedCount]) =>
+        res.render("me/users", {
+          deletedCount,
+          users: multipleMongooseToObject(users),
+        })
+      )
+      .catch(next);
+  }
+
+  turnover(req, res, next) {
+    let courseQuery = Order.find({});
+
+    if (req.query.hasOwnProperty("_sort")) {
+      courseQuery = courseQuery.sort({
+        [req.query.column]: req.query.type,
+      });
+    }
+
+    Promise.all([courseQuery])
+      .then(([orders, deletedCount]) =>
+        res.render("me/turnover", {
+          deletedCount,
+          orders: multipleMongooseToObject(orders),
         })
       )
       .catch(next);

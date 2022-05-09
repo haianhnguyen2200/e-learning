@@ -3,7 +3,7 @@
   <form
     class="mt-4"
     method="POST"
-    action="/courses/{{course.slug}}?_method=PUT"
+    action="/courses/{{product.slug}}?_method=PUT"
   >
     <div class="form-group">
       <label for="name">Tên khoá học</label>
@@ -11,7 +11,7 @@
         type="text"
         class="form-control"
         id="exampleInputEmail1"
-        value="{{course.name}}"
+        value="{{product.name}}"
         name="name"
       />
     </div>
@@ -21,7 +21,7 @@
         type="text"
         class="form-control"
         id="exampleInputEmail1"
-        value="{{course.price}}"
+        value="{{product.price}}"
         name="price"
       />
     </div>
@@ -30,7 +30,7 @@
       <textarea
         class="form-control"
         name="description"
-      >{{course.description}}</textarea>
+      >{{product.description}}</textarea>
     </div>
     {{!-- <div class="form-group">
       <label for="videoID">Mã video</label>
@@ -44,5 +44,6 @@
     </div> --}}
 
     <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+    <a href="/me/stored/courses" class="btn btn-primary">Quay lại</a>
   </form>
 </div>

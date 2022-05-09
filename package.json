@@ -29,6 +29,7 @@
     "mongoose": "^6.2.9",
     "mongoose-delete": "^0.5.4",
     "mongoose-slug-generator": "^1.0.4",
+    "paypal-rest-sdk": "^1.8.1",
     "react": "^18.0.0"
   },
   "devDependencies": {

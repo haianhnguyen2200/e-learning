@@ -45,7 +45,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each courses}}
+      {{#each products}}
         <tr>
           <td>
             <div class="form-check">
@@ -125,7 +125,6 @@
 <form name="restore-course-form" method="POST"></form>
 
 <script>
-
   document.addEventListener('DOMContentLoaded', function () { var courseId; var
   containerForm = $('form[name="container-form"]'); var deleteForm =
   document.forms['delete-course-form']; var restoreForm =
@@ -136,18 +135,17 @@
   $('.btn-check-submit'); $('#delete-course-modal').on('show.bs.modal', function
   (event) { var button = $(event.relatedTarget); courseId = button.data('id');
   }); btnDeleteCourse.onclick = function () { deleteForm.action = '/courses/' +
-  courseId + '/force?_method=DELETE'; deleteForm.submit(); } //Restore btn
-  clicked restoreBtn.click(function (e) { e.preventDefault(); var
-  courseRestoreId = $(this).data('id'); restoreForm.action = '/courses/' +
-  courseRestoreId + '/restore/?_method=PATCH'; restoreForm.submit(); })
-  //Checkbox all changed checkboxAll.change(function () { var isCheckedAll =
-  $(this).prop('checked'); courseItemCheckbox.prop('checked', isCheckedAll);
-  renderCheckSubmitBtn(); }) //Course item checkbox changed
+  courseId + '/force?_method=DELETE'; deleteForm.submit(); };
+  restoreBtn.click(function (e) { e.preventDefault(); var courseRestoreId =
+  $(this).data('id'); restoreForm.action = '/courses/' + courseRestoreId +
+  '/restore/?_method=PATCH'; restoreForm.submit(); });
+  checkboxAll.change(function () { var isCheckedAll = $(this).prop('checked');
+  courseItemCheckbox.prop('checked', isCheckedAll); renderCheckSubmitBtn(); });
   courseItemCheckbox.change(function () { var isCheckedAll =
   courseItemCheckbox.length === $('input[name="courseIds[]"]:checked').length;
-  checkboxAll.prop('checked', isCheckedAll); renderCheckSubmitBtn(); })
-  //Re-render checkbox submit btn function renderCheckSubmitBtn() { var
-  checkedCount = $('input[name="courseIds[]"]:checked').length; if (checkedCount
-  > 0) { checkSubmitBtn.attr('disabled', false); } else {
-  checkSubmitBtn.attr('disabled', true); } } })
+  checkboxAll.prop('checked', isCheckedAll); renderCheckSubmitBtn(); });
+  function renderCheckSubmitBtn() { var checkedCount =
+  $('input[name="courseIds[]"]:checked').length; if (checkedCount > 0) {
+  checkSubmitBtn.attr('disabled', false); } else {
+  checkSubmitBtn.attr('disabled', true); } }; });
 </script>
